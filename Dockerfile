@@ -19,7 +19,7 @@ CMD ["catalina.sh", "run"]
 
 # To deploy a web application, you would typically add a step here
 # to copy your .war file into the webapps directory:
-COPY target/JavaWebApp-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/
+COPY target/JavaWebApp-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
 
 # If you want to remove the default webapps (examples, docs), uncomment the line below:
 RUN rm -rf /usr/local/tomcat/webapps/*
