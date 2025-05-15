@@ -24,4 +24,5 @@ fi
 
 # --- Example of what you might do after login (e.g., push an image) ---
 docker push gautadas/javamavenwebapp:v1.0.0
-docker run -d --name helloworldapp -p 80:80 gautadas/javamavenwebapp:v1.0.0
+echo "docker run starts"
+docker run -d --name helloworldapp -p 8050:8050 gautadas/javamavenwebapp:v1.0.0
