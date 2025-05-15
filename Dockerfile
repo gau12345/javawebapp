@@ -27,7 +27,7 @@ RUN rm -rf /usr/local/tomcat/webapps/*
 COPY --from=builder /app/JavaWebApp-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/JavaWebApp-0.0.1-SNAPSHOT.war
 
 # Expose the default Tomcat port (8080)
-EXPOSE 9191
+# EXPOSE 9191
 
 # Command to run when the container starts.
 # The default command for the tomcat image starts the server.
