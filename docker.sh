@@ -27,4 +27,4 @@ docker push gautadas/javamavenwebapp:v1.0.0
 
 docker rm -f helloworldapp
 echo "docker run starts"
-docker run -d --name helloworldapp -p 9191:9191 gautadas/javamavenwebapp:v1.0.0
+docker run -d --name helloworldapp -p 9191:8080 gautadas/javamavenwebapp:v1.0.0
