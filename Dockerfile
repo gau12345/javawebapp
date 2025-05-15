@@ -10,7 +10,7 @@ LABEL description="Simple Docker image to run a Tomcat server"
 
 # The Tomcat image typically exposes port 8080 by default,
 # but explicitly stating it here is good documentation.
-EXPOSE 9091
+# EXPOSE 9091
 
 # The default command for the official Tomcat image starts the server.
 # You usually don't need to specify CMD unless you want to override
