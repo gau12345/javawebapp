@@ -10,7 +10,7 @@ LABEL description="Simple Docker image to run a Tomcat server"
 
 # To deploy a web application, you would typically add a step here
 # to copy your .war file into the webapps directory:
-COPY target/JavaWebApp-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
+COPY target/JavaWebApp-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/
 
 # The Tomcat image typically exposes port 8080 by default,
 # but explicitly stating it here is good documentation.
