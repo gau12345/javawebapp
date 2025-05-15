@@ -1,39 +1,25 @@
-# Use a base image that includes a JRE and Tomcat.
-# This example uses an Eclipse Temurin image with Tomcat.
-# You can choose other base images like 'tomcat:latest', 'openjdk:11-jre-slim', etc.
-# Using a specific version like 'temurin:11-jre-jammy' is recommended for stability.
-FROM eclipse-temurin:11-jre-jammy as builder
-
-# Set the working directory inside the container
-WORKDIR /app
-
-# Copy the Maven WAR file from your local target directory into the container.
-# The 'target/*.war' assumes your mvn package step produced a WAR file there.
-# Adjust 'your-project-name.war' to the actual name of your WAR file.
-# You can find the WAR file name in your pom.xml's <build><finalName> or defaults to artifactId-version.war
-COPY target/JavaWebApp-0.0.1-SNAPSHOT.war /app/JavaWebApp-0.0.1-SNAPSHOT.war
-
-# --- Now, build the final image ---
-# Use a base image that has Tomcat installed.
-# We'll use the official Tomcat image, which is based on OpenJDK
-# Using a specific version is highly recommended
+# Use an official Tomcat image as the base.
+# This image includes a JRE and the Tomcat server pre-installed.
+# Using a specific version (like 9.0-jre11-temurin-jammy) is highly recommended
+# over 'latest' for reproducibility and stability.
 FROM tomcat:9.0-jre11-temurin-jammy
 
-# Remove the default webapps that come with Tomcat (optional, but keeps image smaller)
+# Maintainer information (optional but good practice)
+LABEL maintainer="Your Name <your.email@example.com>"
+LABEL description="Simple Docker image to run a Tomcat server"
+
+# The Tomcat image typically exposes port 8080 by default,
+# but explicitly stating it here is good documentation.
+EXPOSE 9191
+
+# The default command for the official Tomcat image starts the server.
+# You usually don't need to specify CMD unless you want to override
+# the default startup behavior (e.g., run a specific script before starting Tomcat).
+CMD ["catalina.sh", "run"]
+
+# To deploy a web application, you would typically add a step here
+# to copy your .war file into the webapps directory:
+COPY target/JavaWebApp-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/
+
+# If you want to remove the default webapps (examples, docs), uncomment the line below:
 RUN rm -rf /usr/local/tomcat/webapps/*
-
-# Copy the WAR file from the builder stage into Tomcat's webapps directory.
-# Tomcat automatically deploys WAR files placed in the webapps directory.
-COPY --from=builder /app/JavaWebApp-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/JavaWebApp-0.0.1-SNAPSHOT.war
-
-# Expose the default Tomcat port (8080)
-# EXPOSE 9191
-
-# Command to run when the container starts.
-# The default command for the tomcat image starts the server.
-CMD ["catalina.sh", "run"] # This is often the default, no need to explicitly state it unless changing
-
-# You can add labels to your image (optional but good practice)
-LABEL maintainer="Gaurav <your.email@example.com>"
-LABEL version="1.0"
-LABEL description="Docker image for Your Java Web Application"
