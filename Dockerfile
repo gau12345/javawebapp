@@ -24,7 +24,7 @@ RUN rm -rf /usr/local/tomcat/webapps/*
 
 # Copy the WAR file from the builder stage into Tomcat's webapps directory.
 # Tomcat automatically deploys WAR files placed in the webapps directory.
-COPY --from=builder /app/JavaWebApp-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
+COPY --from=builder /app/JavaWebApp-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/JavaWebApp-0.0.1-SNAPSHOT.war
 
 # Expose the default Tomcat port (8080)
 EXPOSE 9191
