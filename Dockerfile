@@ -14,7 +14,7 @@ COPY target/JavaWebApp-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
 
 # The Tomcat image typically exposes port 8080 by default,
 # but explicitly stating it here is good documentation.
-EXPOSE 8000
+EXPOSE 8080
 
 # The default command for the official Tomcat image starts the server.
 # You usually don't need to specify CMD unless you want to override
