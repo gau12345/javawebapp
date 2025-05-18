@@ -1,5 +1,5 @@
 #!/bin/bash
-docker build -t gautadas/javamavenwebapp:v1.0.1 .
+docker build -t gautadas/javamavenwebapp:v1.0.2 .
 # --- IMPORTANT: Handling Credentials Securely ---
 # Storing credentials directly in the script is NOT recommended for security.
 # See the notes below on better ways to handle secrets.
@@ -23,8 +23,10 @@ else
 fi
 
 # --- Example of what you might do after login (e.g., push an image) ---
-docker push gautadas/javamavenwebapp:v1.0.1
+docker push gautadas/javamavenwebapp:v1.0.2
 
 docker rm -f helloworldapp
-echo "docker run starts"
-docker run -d --name helloworldapp -p 9191:8080 gautadas/javamavenwebapp:v1.0.1
+# echo "docker run starts"
+# docker run -d --name helloworldapp -p 9191:8000 gautadas/javamavenwebapp:v1.0.2
+
+
